@@ -111,13 +111,19 @@ const Router = (function () {
             return;
         }
 
-        // Ocultar barra lateral en pantalla de inicio de sesion
+        // Gestionar drawer movil y visibilidad en pantalla de inicio de sesion
+        const telonLateral = document.getElementById('telon-lateral');
+        if (barraLateral) barraLateral.classList.remove('abierto');
+        if (telonLateral) telonLateral.classList.remove('abierto');
+
         if (hash === '#inicio-sesion') {
             if (barraLateral) barraLateral.style.display = 'none';
             if (encabezado) encabezado.style.display = 'none';
+            if (telonLateral) telonLateral.style.display = 'none';
         } else {
-            if (barraLateral) barraLateral.style.display = 'flex';
+            if (barraLateral) barraLateral.style.display = '';
             if (encabezado) encabezado.style.display = 'flex';
+            if (telonLateral) telonLateral.style.display = '';
         }
 
         // Actualizar titulo de la barra superior

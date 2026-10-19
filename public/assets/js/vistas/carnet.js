@@ -52,8 +52,8 @@ const VistaCarnet = (function () {
             const textoVigencia = esVigente ? 'VIGENTE - ACCESO HABILITADO' : 'NO VIGENTE';
             const iconoVigencia = esVigente ? UI.icono('check') : UI.icono('alerta');
 
-            const divisionesTexto = (carnet.divisiones && carnet.divisiones.length > 0)
-                ? carnet.divisiones.join(', ')
+            const divisionesTexto = (Array.isArray(carnet.divisiones) && carnet.divisiones.length > 0)
+                ? carnet.divisiones.map(d => (typeof d === 'object' && d !== null ? (d.nombre || '') : String(d))).filter(Boolean).join(', ') || 'Sin divisiones asignadas'
                 : 'Sin divisiones asignadas';
 
             let alertaMotivo = '';

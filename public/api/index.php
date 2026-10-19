@@ -109,7 +109,7 @@ $router->registrar('POST',   '/api/divisiones',                              'Co
 $router->registrar('PUT',    '/api/divisiones/{id}',                         'Controladores\DivisionControlador', 'actualizar', ['ADMINISTRADOR'], true);
 $router->registrar('DELETE', '/api/divisiones/{id}',                         'Controladores\DivisionControlador', 'eliminar',   ['ADMINISTRADOR'], true);
 $router->registrar('POST',   '/api/divisiones/{id}/inscripciones',           'Controladores\DivisionControlador', 'inscribir',  ['SOCIO', 'ENTRENADOR', 'ADMINISTRADOR'], true);
-$router->registrar('DELETE', '/api/divisiones/{id}/inscripciones/{socioId}', 'Controladores\DivisionControlador', 'desactivar', ['ENTRENADOR', 'ADMINISTRADOR'], true);
+$router->registrar('DELETE', '/api/divisiones/{id}/inscripciones/{socioId}', 'Controladores\DivisionControlador', 'desactivar', ['SOCIO', 'ENTRENADOR', 'ADMINISTRADOR'], true);
 
 // -----------------------------------------------------------------------------
 // Rutas de Entrenamientos y Asistencias (Regla R9)

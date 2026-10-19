@@ -8,10 +8,10 @@ const VistaAsistencia = {
         const entrenamientoId = (parametro && typeof parametro === 'object') ? parametro.id : parametro;
         if (!entrenamientoId) {
             // Mostrar listado de entrenamientos del entrenador
-            await this.renderizarListadoEntrenamientos(contenedor);
+            await VistaAsistencia.renderizarListadoEntrenamientos(contenedor);
         } else {
             // Mostrar planilla de toma de asistencia para el entrenamiento especifico
-            await this.renderizarPlanillaAsistencia(contenedor, parseInt(entrenamientoId, 10));
+            await VistaAsistencia.renderizarPlanillaAsistencia(contenedor, parseInt(entrenamientoId, 10));
         }
     },
 
@@ -114,7 +114,7 @@ const VistaAsistencia = {
                             <td>${UI.escaparHtml(socio.apellido)}, ${UI.escaparHtml(socio.nombre)}</td>
                             <td>${UI.escaparHtml(socio.dni)}</td>
                             <td>
-                                <div style="display: flex; gap: 1rem; align-items: center;">
+                                <div style="display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap;">
                                     <label style="display: flex; align-items: center; gap: 0.35rem; cursor: pointer;">
                                         <input type="radio" name="asistencia_${socio.socio_id}" value="PRESENTE" ${presenteChecked}>
                                         <span class="etiqueta etiqueta-presente">Presente</span>

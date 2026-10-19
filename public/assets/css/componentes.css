@@ -1005,6 +1005,110 @@
     border-radius: var(--radio-medio);
     padding: 1.75rem;
     margin-top: 1.5rem;
+/* =============================================================================
+   13. REGLAS RESPONSIVAS COMPONENTES
+   ============================================================================= */
+@media (max-width: 768px) {
+    .tabla th, .tabla td {
+        padding: 0.6rem 0.75rem;
+        font-size: 0.85rem;
+    }
+
+    .modal, .modal-fondo {
+        padding: 0.75rem;
+    }
+
+    .modal-caja, .modal-contenido {
+        max-width: 96vw;
+        max-height: 92vh;
+    }
+
+    .modal-cabecera {
+        padding: 1rem 1.25rem;
+    }
+
+    .modal-cuerpo {
+        padding: 1.25rem 1rem;
+    }
+
+    .modal-pie {
+        padding: 0.85rem 1rem;
+        flex-wrap: wrap;
+    }
+
+    .grid-colores-tema {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .tabla th, .tabla td {
+        padding: 0.5rem 0.55rem;
+        font-size: 0.8rem;
+    }
+
+    .tabla-acciones {
+        flex-wrap: wrap;
+        gap: 0.25rem;
+    }
+
+    .caja-metrica {
+        padding: 0.85rem;
+    }
+
+    .metrica-icono {
+        width: 38px;
+        height: 38px;
+    }
+
+    .metrica-valor {
+        font-size: 1.3rem;
+    }
+
+    .carnet-tarjeta {
+        padding: 1.25rem 1rem;
+    }
+
+    .carnet-tarjeta::after {
+        font-size: 7rem;
+        right: -10px;
+        bottom: -15px;
+    }
+
+    .carnet-cuerpo {
+        grid-template-columns: 65px 1fr;
+        gap: 0.75rem;
+    }
+
+    .carnet-foto-avatar {
+        width: 65px;
+        height: 80px;
+    }
+
+    .carnet-nombre-completo {
+        font-size: 1.1rem;
+    }
+
+    .carnet-dato-fila {
+        font-size: 0.8rem;
+        flex-wrap: wrap;
+        word-break: break-word;
+    }
+
+    .carnet-pie {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .tarjeta-credito-simulada {
+        padding: 1.25rem;
+    }
+
+    .tarjeta-simulada-numero {
+        font-size: 1.05rem;
+        letter-spacing: 1.5px;
+    }
 }
 
 /* Reglas de impresion en papel */

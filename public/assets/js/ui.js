@@ -152,10 +152,31 @@ const UI = (function () {
         `;
     }
 
+    /**
+     * Genera el HTML de un bloque de aviso o alerta estatico en pantalla.
+     *
+     * @param {string} mensaje Texto o descripcion del mensaje
+     * @param {string} tipo Tipo de aviso ('exito', 'peligro', 'error', 'advertencia', 'info')
+     * @returns {string} Markup HTML
+     */
+    function alerta(mensaje, tipo = 'error') {
+        const tipoClase = (tipo === 'peligro' || tipo === 'error') 
+            ? 'aviso-error' 
+            : (tipo === 'exito' ? 'aviso-exito' : (tipo === 'advertencia' ? 'aviso-advertencia' : 'aviso-info'));
+        const iconoNombre = tipo === 'exito' ? 'check' : (tipo === 'info' ? 'info' : 'alerta');
+        return `
+            <div class="aviso ${tipoClase}" style="margin-bottom: 1rem;">
+                <div class="aviso-icono">${ICONOS[iconoNombre] || ICONOS.alerta}</div>
+                <div>${escaparHtml(mensaje)}</div>
+            </div>
+        `;
+    }
+
     return {
         icono: (nombre) => ICONOS[nombre] || '',
         escaparHtml,
         notificar,
+        alerta,
         confirmar,
         formatearMoneda,
         formatearFecha,

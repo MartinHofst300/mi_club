@@ -162,6 +162,10 @@ class SocioControlador
             }
         }
 
+        $nombresDivisiones = array_map(function($d) {
+            return is_array($d) ? ($d['nombre'] ?? '') : (string)$d;
+        }, $socio['divisiones'] ?? []);
+
         $carnet = [
             'id' => $socio['id'],
             'numero_socio' => $socio['numero_socio'],
@@ -169,7 +173,8 @@ class SocioControlador
             'apellido' => $socio['apellido'],
             'dni' => $socio['dni'],
             'categoria' => $socio['categoria_nombre'],
-            'divisiones' => $socio['divisiones'],
+            'divisiones' => $nombresDivisiones,
+            'divisiones_detalle' => $socio['divisiones'],
             'estado' => $socio['estado'],
             'vigente' => $vigente,
             'motivo_no_vigente' => $motivoNoVigente,

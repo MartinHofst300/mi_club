@@ -242,6 +242,41 @@ const App = (function () {
     }
 
     /**
+     * Vincula los controladores de eventos para apertura y cierre de la navegacion lateral en moviles.
+     */
+    function iniciarNavegacionMovil() {
+        const btnMenuMovil = document.getElementById('btn-menu-movil');
+        const btnCerrarLateral = document.getElementById('btn-cerrar-lateral');
+        const telonLateral = document.getElementById('telon-lateral');
+        const barraLateral = document.getElementById('barra-lateral');
+
+        function abrirMenu() {
+            if (barraLateral) barraLateral.classList.add('abierto');
+            if (telonLateral) telonLateral.classList.add('abierto');
+        }
+
+        function cerrarMenu() {
+            if (barraLateral) barraLateral.classList.remove('abierto');
+            if (telonLateral) telonLateral.classList.remove('abierto');
+        }
+
+        if (btnMenuMovil) btnMenuMovil.addEventListener('click', abrirMenu);
+        if (btnCerrarLateral) btnCerrarLateral.addEventListener('click', cerrarMenu);
+        if (telonLateral) telonLateral.addEventListener('click', cerrarMenu);
+
+        // Al cambiar de hash o al hacer click en un enlace del menu, cerrar el drawer
+        window.addEventListener('hashchange', cerrarMenu);
+        const listaMenu = document.getElementById('lista-menu-lateral');
+        if (listaMenu) {
+            listaMenu.addEventListener('click', (e) => {
+                if (e.target.closest('a')) {
+                    cerrarMenu();
+                }
+            });
+        }
+    }
+
+    /**
      * Punto de entrada de la aplicacion al cargarse el DOM.
      */
     async function iniciar() {
@@ -255,7 +290,10 @@ const App = (function () {
         registrarRutas();
         actualizarMenuLateral();
 
-        // 4. Iniciar despachador de hash
+        // 4. Vincular controles de navegacion movil
+        iniciarNavegacionMovil();
+
+        // 5. Iniciar despachador de hash
         Router.iniciar();
     }
 

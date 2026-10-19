@@ -7,9 +7,9 @@
     <title>MiClub - Gestion de Club Social y Deportivo</title>
 
     <!-- Hojas de estilo del sistema -->
-    <link rel="stylesheet" href="assets/css/tema.css">
-    <link rel="stylesheet" href="assets/css/base.css">
-    <link rel="stylesheet" href="assets/css/componentes.css">
+    <link rel="stylesheet" href="assets/css/tema.css?v=2">
+    <link rel="stylesheet" href="assets/css/base.css?v=2">
+    <link rel="stylesheet" href="assets/css/componentes.css?v=2">
 </head>
 <body>
     <!-- Contenedor flotante para notificaciones Toast -->
@@ -17,18 +17,24 @@
 
     <!-- Contenedor principal de la aplicacion de una sola pagina -->
     <div id="app-contenedor">
+        <!-- Telon / Backdrop para navegacion movil -->
+        <div id="telon-lateral" class="telon-lateral" aria-hidden="true"></div>
+
         <!-- Barra lateral institucional -->
         <aside id="barra-lateral" aria-label="Menu Principal">
             <div class="cabecera-lateral">
                 <div class="icono-escudo" aria-hidden="true">MC</div>
-                <div>
+                <div style="flex: 1; min-width: 0;">
                     <div class="titulo-club nombre-club-dinamico">MiClub</div>
                     <div class="subtitulo-club">Club Social y Deportivo</div>
                 </div>
+                <button type="button" class="btn-cerrar-lateral no-escritorio" id="btn-cerrar-lateral" aria-label="Cerrar menu">
+                    &times;
+                </button>
             </div>
 
             <!-- Navegacion por rol -->
-            <nav style="flex: 1; display: flex; flex-direction: column;">
+            <nav style="flex: 1; display: flex; flex-direction: column; overflow-y: auto;">
                 <ul class="menu-lateral" id="lista-menu-lateral"></ul>
             </nav>
 
@@ -40,8 +46,13 @@
         <div id="area-principal">
             <!-- Encabezado superior -->
             <header id="encabezado-superior">
-                <h1 class="titulo-vista-actual" id="titulo-vista">Panel Principal</h1>
-                <div style="font-size: 0.85rem; color: var(--color-texto-suave);">
+                <div style="display: flex; align-items: center; gap: 0.75rem; min-width: 0;">
+                    <button type="button" class="btn-menu-movil no-escritorio" id="btn-menu-movil" aria-label="Abrir menu de navegacion">
+                        <svg class="icono-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+                    </button>
+                    <h1 class="titulo-vista-actual" id="titulo-vista">Panel Principal</h1>
+                </div>
+                <div class="subtitulo-encabezado" style="font-size: 0.85rem; color: var(--color-texto-suave);">
                     <span class="nombre-club-dinamico">Club Social y Deportivo MiClub</span>
                 </div>
             </header>
@@ -56,38 +67,38 @@
     </div>
 
     <!-- Modulos JavaScript en capas (sin dependencias externas ni compilacion) -->
-    <script src="assets/js/api.js"></script>
-    <script src="assets/js/ui.js"></script>
-    <script src="assets/js/auth.js"></script>
-    <script src="assets/js/tema.js"></script>
-    <script src="assets/js/router.js"></script>
+    <script src="assets/js/api.js?v=3"></script>
+    <script src="assets/js/ui.js?v=3"></script>
+    <script src="assets/js/auth.js?v=3"></script>
+    <script src="assets/js/tema.js?v=3"></script>
+    <script src="assets/js/router.js?v=3"></script>
     
     <!-- Vistas del sistema -->
-    <script src="assets/js/vistas/inicioSesion.js"></script>
-    <script src="assets/js/vistas/panel.js"></script>
-    <script src="assets/js/vistas/generarCuotas.js"></script>
-    <script src="assets/js/vistas/registrarPago.js"></script>
-    <script src="assets/js/vistas/recibo.js"></script>
-    <script src="assets/js/vistas/asistencia.js"></script>
-    <script src="assets/js/vistas/carnet.js"></script>
-    <script src="assets/js/vistas/estadoCuenta.js"></script>
-    <script src="assets/js/vistas/historialPagos.js"></script>
-    <script src="assets/js/vistas/pagarCuota.js"></script>
-    <script src="assets/js/vistas/inscripcionDivision.js"></script>
-    <script src="assets/js/vistas/editarDatos.js"></script>
-    <script src="assets/js/vistas/misEntrenamientos.js"></script>
-    <script src="assets/js/vistas/morosos.js"></script>
-    <script src="assets/js/vistas/plantel.js"></script>
-    <script src="assets/js/vistas/crearEntrenamiento.js"></script>
-    <script src="assets/js/vistas/apercibimientos.js"></script>
-    <script src="assets/js/vistas/apariencia.js"></script>
-    <script src="assets/js/vistas/usuarios.js"></script>
-    <script src="assets/js/vistas/socios.js"></script>
-    <script src="assets/js/vistas/categorias.js"></script>
-    <script src="assets/js/vistas/precios.js"></script>
-    <script src="assets/js/vistas/divisiones.js"></script>
+    <script src="assets/js/vistas/inicioSesion.js?v=3"></script>
+    <script src="assets/js/vistas/panel.js?v=3"></script>
+    <script src="assets/js/vistas/generarCuotas.js?v=3"></script>
+    <script src="assets/js/vistas/registrarPago.js?v=3"></script>
+    <script src="assets/js/vistas/recibo.js?v=3"></script>
+    <script src="assets/js/vistas/asistencia.js?v=3"></script>
+    <script src="assets/js/vistas/carnet.js?v=3"></script>
+    <script src="assets/js/vistas/estadoCuenta.js?v=3"></script>
+    <script src="assets/js/vistas/historialPagos.js?v=3"></script>
+    <script src="assets/js/vistas/pagarCuota.js?v=3"></script>
+    <script src="assets/js/vistas/inscripcionDivision.js?v=3"></script>
+    <script src="assets/js/vistas/editarDatos.js?v=3"></script>
+    <script src="assets/js/vistas/misEntrenamientos.js?v=3"></script>
+    <script src="assets/js/vistas/morosos.js?v=3"></script>
+    <script src="assets/js/vistas/plantel.js?v=3"></script>
+    <script src="assets/js/vistas/crearEntrenamiento.js?v=3"></script>
+    <script src="assets/js/vistas/apercibimientos.js?v=3"></script>
+    <script src="assets/js/vistas/apariencia.js?v=3"></script>
+    <script src="assets/js/vistas/usuarios.js?v=3"></script>
+    <script src="assets/js/vistas/socios.js?v=3"></script>
+    <script src="assets/js/vistas/categorias.js?v=3"></script>
+    <script src="assets/js/vistas/precios.js?v=3"></script>
+    <script src="assets/js/vistas/divisiones.js?v=3"></script>
 
     <!-- Bootstrap de inicio -->
-    <script src="assets/js/app.js"></script>
+    <script src="assets/js/app.js?v=3"></script>
 </body>
 </html>

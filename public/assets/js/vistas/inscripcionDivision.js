@@ -100,7 +100,14 @@ const VistaInscripcionDivision = (function () {
 
                     let botonHtml = '';
                     if (yaInscripto) {
-                        botonHtml = `<span class="etiqueta etiqueta-exito">${UI.icono('check')} Ya inscripto</span>`;
+                        botonHtml = `
+                            <div style="display: flex; gap: 0.5rem; align-items: center; justify-content: flex-end; flex-wrap: wrap;">
+                                <span class="etiqueta etiqueta-exito">${UI.icono('check')} Ya inscripto</span>
+                                <button type="button" class="btn btn-sm btn-peligro btn-dar-baja" data-id="${d.id}" data-nombre="${UI.escaparHtml(d.nombre)}">
+                                    ${UI.icono('eliminar')} Darse de baja
+                                </button>
+                            </div>
+                        `;
                     } else if (!puedeInscribirse) {
                         botonHtml = `<button type="button" class="btn btn-sm btn-secundario" disabled>No habilitado</button>`;
                     } else if (cupoLleno) {
@@ -144,13 +151,45 @@ const VistaInscripcionDivision = (function () {
                 }).join('');
             }
 
+            const misDivisiones = divisiones.filter(d => Boolean(d.ya_inscripto));
+            let seccionMisDivisiones = '';
+            if (misDivisiones.length > 0) {
+                seccionMisDivisiones = `
+                    <div class="tarjeta" style="margin-bottom: 1.5rem; border-left: 4px solid var(--color-primario);">
+                        <div class="tarjeta-cabecera">
+                            <h3 class="tarjeta-titulo">Mis Divisiones Actuales</h3>
+                        </div>
+                        <div class="tarjeta-cuerpo">
+                            <p style="font-size: 0.9rem; color: var(--color-texto-suave); margin-bottom: 1rem;">
+                                Te encuentras formalmente inscripto en las siguientes actividades deportivas del club:
+                            </p>
+                            <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                                ${misDivisiones.map(m => `
+                                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 1rem; background-color: var(--color-fondo); border: 1px solid var(--color-borde); border-radius: var(--radio-pequeno); flex-wrap: wrap; gap: 0.75rem;">
+                                        <div>
+                                            <strong style="font-size: 1rem; color: var(--color-primario-oscuro);">${UI.escaparHtml(m.nombre)}</strong>
+                                            <div style="font-size: 0.8rem; color: var(--color-texto-suave); margin-top: 0.2rem;">
+                                                Categoria: ${UI.escaparHtml(m.categoria_nombre)} | Entrenador: ${UI.escaparHtml(m.entrenador_nombre + ' ' + m.entrenador_apellido)}
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn btn-sm btn-peligro btn-dar-baja" data-id="${m.id}" data-nombre="${UI.escaparHtml(m.nombre)}">
+                                            ${UI.icono('eliminar')} Darse de baja
+                                        </button>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
             contenedor.innerHTML = `
                 <div>
                     <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
                         <div>
                             <h2 style="margin: 0; font-size: 1.5rem; color: var(--color-primario-oscuro);">Inscripcion a Divisiones Deportivas</h2>
                             <p style="margin: 0.25rem 0 0 0; color: var(--color-texto-suave); font-size: 0.9rem;">
-                                Selecciona una actividad deportiva para incorporarte al plantel (Regla R8).
+                                Gestiona tus inscripciones a actividades deportivas del club (Regla R8).
                             </p>
                         </div>
                         <div style="font-size: 0.85rem; background-color: var(--color-superficie); padding: 0.5rem 1rem; border-radius: var(--radio-pequeno); border: 1px solid var(--color-borde);">
@@ -159,6 +198,12 @@ const VistaInscripcionDivision = (function () {
                     </div>
 
                     ${bannerEstado}
+                    ${seccionMisDivisiones}
+
+                    <div style="margin-bottom: 1rem;">
+                        <h3 style="font-size: 1.15rem; color: var(--color-primario-oscuro); margin-bottom: 0.25rem;">Catalogo de Actividades y Divisiones</h3>
+                        <p style="font-size: 0.85rem; color: var(--color-texto-suave); margin-bottom: 0;">Selecciona una division para unirte al plantel o administrar tu cupo.</p>
+                    </div>
 
                     <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem;">
                         ${tarjetasHtml}
@@ -189,6 +234,35 @@ const VistaInscripcionDivision = (function () {
                         } catch (error) {
                             btn.disabled = false;
                             btn.innerHTML = `${UI.icono('check')} Inscribirme`;
+                            UI.notificar(error.message, 'error');
+                        }
+                    }
+                });
+            });
+
+            // Vincular botones de baja de division
+            contenedor.querySelectorAll('.btn-dar-baja').forEach(btn => {
+                btn.addEventListener('click', async () => {
+                    const divisionId = parseInt(btn.dataset.id, 10);
+                    const nombreDiv = btn.dataset.nombre;
+
+                    const confirmado = await UI.confirmar(
+                        `Esta seguro de que desea darse de baja de la division "${nombreDiv}"? Podra volver a inscribirse posteriormente si hay cupo disponible.`,
+                        'Confirmar Baja de Division'
+                    );
+
+                    if (confirmado) {
+                        btn.disabled = true;
+                        btn.textContent = 'Procesando...';
+
+                        try {
+                            const res = await Api.delete(`/divisiones/${divisionId}/inscripciones/${socioId}`);
+                            UI.notificar(res.mensaje || 'Te has dado de baja de la division correctamente.', 'exito');
+                            // Recargar catalogo para reflejar cupo actualizado
+                            await render(contenedor);
+                        } catch (error) {
+                            btn.disabled = false;
+                            btn.innerHTML = `${UI.icono('eliminar')} Darse de baja`;
                             UI.notificar(error.message, 'error');
                         }
                     }

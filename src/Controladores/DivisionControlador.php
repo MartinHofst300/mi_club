@@ -83,7 +83,7 @@ class DivisionControlador
     }
 
     /**
-     * Da de baja a un socio del plantel (Gestionar plantel por el entrenador).
+     * Da de baja a un socio del plantel o division (Gestionar plantel o autogestion del socio).
      * Ruta: DELETE /api/divisiones/{id}/inscripciones/{socioId}
      */
     public function desactivar(Peticion $peticion, array $parametros): void
@@ -94,10 +94,19 @@ class DivisionControlador
         Sesion::iniciar();
         $rol = Sesion::obtener('rol_nombre');
         $usuarioId = (int)Sesion::obtener('usuario_id');
-        $entrenadorUsuarioId = ($rol === 'ENTRENADOR') ? $usuarioId : null;
+
+        if ($rol === 'SOCIO') {
+            $miSocioId = (int)Sesion::obtener('socio_id');
+            if ($socioId !== $miSocioId) {
+                throw new ProhibidoException('No tiene autorizacion para dar de baja a otro socio.');
+            }
+            $entrenadorUsuarioId = null;
+        } else {
+            $entrenadorUsuarioId = ($rol === 'ENTRENADOR') ? $usuarioId : null;
+        }
 
         $this->divisionServicio->darDeBajaPlantel($divisionId, $socioId, $entrenadorUsuarioId);
-        Respuesta::exito(['mensaje' => 'Socio dado de baja del plantel exitosamente.'], 200);
+        Respuesta::exito(['mensaje' => 'Inscripcion dada de baja exitosamente.'], 200);
     }
 
     /**
