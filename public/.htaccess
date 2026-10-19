@@ -1,0 +1,23 @@
+# Configuracion de reescritura para la aplicacion MiClub
+# Compatible con Apache en subdirectorios (ej: /dashboard/miclub/public/ o /miclub/public/)
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Si el archivo o directorio fisico existe, servirlo directamente
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+
+    # Reescribir peticiones hacia la API al controlador frontal
+    RewriteRule ^api/(.*)$ api/index.php [QSA,L]
+    RewriteRule ^api$ api/index.php [QSA,L]
+</IfModule>
+
+# Desactivar navegacion de directorios
+Options -Indexes
+
+# Prevenir acceso a archivos ocultos o de configuracion
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>

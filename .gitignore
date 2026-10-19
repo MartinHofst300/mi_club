@@ -1,0 +1,21 @@
+# Archivos y directorios ignorados en el repositorio de MiClub
+
+# Registros de log de la aplicacion
+logs/
+*.log
+
+# Archivo de configuracion local con credenciales
+config/config.php
+
+# Archivos temporales y de sesion de pruebas
+miclub_test_cookies.txt
+*.tmp
+*.temp
+.tempmediaStorage/
+scratch/
+
+# Archivos del sistema operativo y editores
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

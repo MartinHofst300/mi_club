@@ -1,0 +1,54 @@
+/**
+ * Variables de diseno y tema institucional para MiClub.
+ * Capa: Presentacion / Estilos.
+ *
+ * Todos los colores del sistema se definen en este archivo mediante variables CSS.
+ * Las variantes interactivas y fondos se calculan dinamicamente mediante color-mix().
+ */
+
+:root {
+    /* Paleta institucional por defecto (reemplazable dinamicamente desde la API) */
+    --color-primario: #1F5C3B;
+    --color-primario-oscuro: #14402A;
+    --color-secundario: #E4EFE7;
+    --color-acento: #C98A1B;
+    --color-fondo: #F6F4EC;
+    --color-texto: #1E2A24;
+
+    /* Estados del sistema */
+    --color-exito: #2E7D4F;
+    --color-advertencia: #C98A1B;
+    --color-error: #B3402F;
+    --color-info: #3A6EA5;
+
+    /* Superficies y componentes calculados con color-mix() */
+    --color-blanco: #FFFFFF;
+    --color-negro: #000000;
+    --color-superficie: #FFFFFF;
+    --color-superficie-alt: color-mix(in srgb, var(--color-fondo) 90%, var(--color-primario) 10%);
+    --color-borde: color-mix(in srgb, var(--color-texto) 15%, transparent);
+    --color-borde-fuerte: color-mix(in srgb, var(--color-texto) 30%, transparent);
+    --color-texto-suave: color-mix(in srgb, var(--color-texto) 65%, transparent);
+    --color-texto-inverso: #FFFFFF;
+
+    /* Variantes interactivas */
+    --color-primario-hover: color-mix(in srgb, var(--color-primario) 85%, var(--color-negro) 15%);
+    --color-primario-suave: color-mix(in srgb, var(--color-primario) 12%, transparent);
+    --color-acento-hover: color-mix(in srgb, var(--color-acento) 85%, var(--color-negro) 15%);
+    --color-acento-suave: color-mix(in srgb, var(--color-acento) 15%, transparent);
+    --color-error-suave: color-mix(in srgb, var(--color-error) 12%, transparent);
+    --color-exito-suave: color-mix(in srgb, var(--color-exito) 12%, transparent);
+
+    /* Tipografia de sistema (sin CDNs ni dependencias externas) */
+    --fuente-principal: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --fuente-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+
+    /* Espaciado y radios */
+    --radio-pequeno: 4px;
+    --radio-medio: 8px;
+    --radio-grande: 12px;
+    --sombra-suave: 0 2px 8px rgba(20, 64, 42, 0.08);
+    --sombra-media: 0 4px 16px rgba(20, 64, 42, 0.12);
+    --sombra-elevada: 0 8px 24px rgba(20, 64, 42, 0.18);
+    --transicion-base: all 0.2s ease-in-out;
+}

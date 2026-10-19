@@ -1,0 +1,1038 @@
+/**
+ * Componentes visuales reutilizables de MiClub.
+ * Capa: Presentacion / Componentes.
+ *
+ * Incluye botones, tablas, formularios, modales, etiquetas de estado,
+ * carnet institucional y diseno de impresion de recibos.
+ */
+
+/* =============================================================================
+   1. BOTONES
+   ============================================================================= */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.55rem 1.15rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    line-height: 1.4;
+    border-radius: var(--radio-medio);
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: var(--transicion-base);
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+}
+
+.btn:disabled, .btn.deshabilitado {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.btn svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+    flex-shrink: 0;
+}
+
+.btn-primario {
+    background-color: var(--color-primario);
+    color: var(--color-texto-inverso);
+    border-color: var(--color-primario);
+}
+.btn-primario:hover {
+    background-color: var(--color-primario-hover);
+    border-color: var(--color-primario-hover);
+    color: var(--color-texto-inverso);
+    text-decoration: none;
+}
+
+.btn-secundario {
+    background-color: var(--color-superficie);
+    color: var(--color-texto);
+    border-color: var(--color-borde-fuerte);
+}
+.btn-secundario:hover {
+    background-color: var(--color-fondo);
+    border-color: var(--color-primario);
+    color: var(--color-primario);
+    text-decoration: none;
+}
+
+.btn-acento {
+    background-color: var(--color-acento);
+    color: var(--color-texto-inverso);
+    border-color: var(--color-acento);
+}
+.btn-acento:hover {
+    background-color: var(--color-acento-hover);
+    border-color: var(--color-acento-hover);
+    color: var(--color-texto-inverso);
+    text-decoration: none;
+}
+
+.btn-peligro {
+    background-color: var(--color-error);
+    color: var(--color-texto-inverso);
+    border-color: var(--color-error);
+}
+.btn-peligro:hover {
+    background-color: color-mix(in srgb, var(--color-error) 85%, var(--color-negro) 15%);
+    color: var(--color-texto-inverso);
+    text-decoration: none;
+}
+
+.btn-sm {
+    padding: 0.35rem 0.75rem;
+    font-size: 0.8rem;
+}
+
+.btn-bloque {
+    display: flex;
+    width: 100%;
+}
+
+/* =============================================================================
+   2. TARJETAS Y PANELES
+   ============================================================================= */
+.tarjeta {
+    background-color: var(--color-superficie);
+    border-radius: var(--radio-medio);
+    border: 1px solid var(--color-borde);
+    box-shadow: var(--sombra-suave);
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+}
+
+.tarjeta-cabecera {
+    padding: 1.15rem 1.5rem;
+    border-bottom: 1px solid var(--color-borde);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--color-superficie);
+}
+
+.tarjeta-titulo {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--color-primario-oscuro);
+    margin: 0;
+}
+
+.tarjeta-cuerpo {
+    padding: 1.5rem;
+}
+
+.tarjeta-pie {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--color-borde);
+    background-color: color-mix(in srgb, var(--color-fondo) 40%, var(--color-superficie) 60%);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.75rem;
+}
+
+/* Rejilla de estadisticas o resumen */
+.rejilla-resumen {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.caja-metrica {
+    background-color: var(--color-superficie);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-medio);
+    padding: 1.25rem;
+    box-shadow: var(--sombra-suave);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+}
+
+.metrica-icono {
+    width: 3.25rem;
+    height: 3.25rem;
+    border-radius: var(--radio-medio);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background-color: var(--color-primario-suave);
+    color: var(--color-primario);
+}
+
+.metrica-icono svg, .metrica-icono .icono-svg {
+    width: 1.75rem;
+    height: 1.75rem;
+}
+
+.metrica-datos {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.metrica-etiqueta, .caja-metrica .etiqueta-metrica {
+    font-size: 0.8rem;
+    color: var(--color-texto-suave);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.25rem;
+}
+
+.metrica-valor, .caja-metrica .valor-metrica {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--color-primario-oscuro);
+    line-height: 1.2;
+}
+
+.caja-metrica .detalle-metrica {
+    font-size: 0.8rem;
+    color: var(--color-texto-suave);
+    margin-top: 0.25rem;
+}
+
+/* =============================================================================
+   3. TABLAS
+   ============================================================================= */
+.tabla-responsiva {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-medio);
+    background-color: var(--color-superficie);
+}
+
+.tabla {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.9rem;
+}
+
+.tabla th {
+    background-color: var(--color-secundario);
+    color: var(--color-primario-oscuro);
+    font-weight: 600;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--color-borde-fuerte);
+    white-space: nowrap;
+}
+
+.tabla td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--color-borde);
+    color: var(--color-texto);
+    vertical-align: middle;
+}
+
+.tabla tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.tabla tbody tr:hover {
+    background-color: color-mix(in srgb, var(--color-secundario) 25%, var(--color-superficie) 75%);
+}
+
+.tabla-acciones {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+}
+
+/* =============================================================================
+   4. FORMULARIOS Y CONTROLES
+   ============================================================================= */
+.grupo-formulario {
+    margin-bottom: 1.25rem;
+}
+
+.etiqueta-formulario {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-primario-oscuro);
+}
+
+.control-formulario {
+    width: 100%;
+    padding: 0.6rem 0.85rem;
+    font-size: 0.95rem;
+    font-family: inherit;
+    color: var(--color-texto);
+    background-color: var(--color-superficie);
+    border: 1px solid var(--color-borde-fuerte);
+    border-radius: var(--radio-pequeno);
+    transition: var(--transicion-base);
+    outline: none;
+}
+
+.control-formulario:focus {
+    border-color: var(--color-primario);
+    box-shadow: 0 0 0 3px var(--color-primario-suave);
+}
+
+.control-formulario:disabled, .control-formulario[readonly] {
+    background-color: var(--color-fondo);
+    cursor: not-allowed;
+    color: var(--color-texto-suave);
+}
+
+.texto-ayuda {
+    font-size: 0.8rem;
+    color: var(--color-texto-suave);
+    margin-top: 0.3rem;
+}
+
+.texto-error {
+    font-size: 0.8rem;
+    color: var(--color-error);
+    margin-top: 0.3rem;
+    font-weight: 500;
+}
+
+.rejilla-formulario {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+}
+
+/* Barra de busqueda */
+.barra-busqueda {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+}
+
+.barra-busqueda input {
+    flex: 1;
+}
+
+/* =============================================================================
+   5. ETIQUETAS DE ESTADO
+   ============================================================================= */
+.etiqueta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.2rem 0.6rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: var(--radio-pequeno);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    line-height: 1.2;
+}
+
+.etiqueta-activo {
+    background-color: var(--color-exito-suave);
+    color: var(--color-exito);
+    border: 1px solid color-mix(in srgb, var(--color-exito) 40%, transparent);
+}
+
+.etiqueta-moroso {
+    background-color: var(--color-error-suave);
+    color: var(--color-error);
+    border: 1px solid color-mix(in srgb, var(--color-error) 40%, transparent);
+}
+
+.etiqueta-suspendido {
+    background-color: var(--color-acento-suave);
+    color: var(--color-acento);
+    border: 1px solid color-mix(in srgb, var(--color-acento) 40%, transparent);
+}
+
+.etiqueta-baja {
+    background-color: color-mix(in srgb, var(--color-texto) 10%, transparent);
+    color: var(--color-texto-suave);
+    border: 1px solid var(--color-borde);
+}
+
+.etiqueta-pendiente {
+    background-color: var(--color-acento-suave);
+    color: var(--color-acento);
+    border: 1px solid color-mix(in srgb, var(--color-acento) 40%, transparent);
+}
+
+.etiqueta-pagada {
+    background-color: var(--color-exito-suave);
+    color: var(--color-exito);
+    border: 1px solid color-mix(in srgb, var(--color-exito) 40%, transparent);
+}
+
+.etiqueta-vencida {
+    background-color: var(--color-error-suave);
+    color: var(--color-error);
+    border: 1px solid color-mix(in srgb, var(--color-error) 40%, transparent);
+}
+
+.etiqueta-anulada {
+    background-color: color-mix(in srgb, var(--color-texto) 10%, transparent);
+    color: var(--color-texto-suave);
+    border: 1px solid var(--color-borde);
+    text-decoration: line-through;
+}
+
+.etiqueta-presente {
+    background-color: var(--color-exito-suave);
+    color: var(--color-exito);
+}
+
+.etiqueta-ausente {
+    background-color: var(--color-error-suave);
+    color: var(--color-error);
+}
+
+.etiqueta-justificado {
+    background-color: var(--color-acento-suave);
+    color: var(--color-acento);
+}
+
+/* =============================================================================
+   6. AVISOS Y NOTIFICACIONES
+   ============================================================================= */
+.aviso {
+    padding: 1rem 1.25rem;
+    border-radius: var(--radio-medio);
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    border: 1px solid transparent;
+}
+
+.aviso-icono {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+.aviso-icono svg {
+    width: 100%;
+    height: 100%;
+    fill: currentColor;
+}
+
+.aviso-exito {
+    background-color: var(--color-exito-suave);
+    color: color-mix(in srgb, var(--color-exito) 85%, var(--color-negro) 15%);
+    border-color: color-mix(in srgb, var(--color-exito) 30%, transparent);
+}
+
+.aviso-error {
+    background-color: var(--color-error-suave);
+    color: color-mix(in srgb, var(--color-error) 85%, var(--color-negro) 15%);
+    border-color: color-mix(in srgb, var(--color-error) 30%, transparent);
+}
+
+.aviso-advertencia {
+    background-color: var(--color-acento-suave);
+    color: color-mix(in srgb, var(--color-acento) 85%, var(--color-negro) 15%);
+    border-color: color-mix(in srgb, var(--color-acento) 30%, transparent);
+}
+
+.aviso-info {
+    background-color: color-mix(in srgb, var(--color-info) 12%, transparent);
+    color: color-mix(in srgb, var(--color-info) 85%, var(--color-negro) 15%);
+    border-color: color-mix(in srgb, var(--color-info) 30%, transparent);
+}
+
+/* Contenedor flotante de avisos temporales (Toasts) */
+#contenedor-notificaciones {
+    position: fixed;
+    top: 1.5rem;
+    right: 1.5rem;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    max-width: 400px;
+    pointer-events: none;
+}
+
+.toast {
+    pointer-events: auto;
+    padding: 0.85rem 1.15rem;
+    border-radius: var(--radio-medio);
+    box-shadow: var(--sombra-elevada);
+    background-color: var(--color-superficie);
+    border-left: 4px solid var(--color-primario);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+    animation: deslizar-entrada 0.25s ease-out;
+}
+
+.toast-exito { border-left-color: var(--color-exito); }
+.toast-error { border-left-color: var(--color-error); }
+.toast-advertencia { border-left-color: var(--color-advertencia); }
+
+@keyframes deslizar-entrada {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+/* =============================================================================
+   7. MODALES Y DIALOGOS
+   ============================================================================= */
+.modal, .modal-fondo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: color-mix(in srgb, var(--color-negro) 50%, transparent);
+    backdrop-filter: blur(2px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 1.5rem;
+}
+
+.modal-caja, .modal-contenido {
+    background-color: var(--color-superficie);
+    border-radius: var(--radio-grande);
+    box-shadow: var(--sombra-elevada);
+    width: 100%;
+    max-width: 600px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    animation: aparecer 0.2s ease-out;
+}
+
+.modal-caja-grande {
+    max-width: 850px;
+}
+
+@keyframes aparecer {
+    from { transform: scale(0.95); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.modal-cabecera {
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--color-borde);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.modal-titulo {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-primario-oscuro);
+    margin: 0;
+}
+
+.modal-cerrar, .btn-cerrar-modal {
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    line-height: 1;
+    color: var(--color-texto-suave);
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    transition: var(--transicion-base);
+}
+
+.modal-cerrar:hover, .btn-cerrar-modal:hover {
+    color: var(--color-error);
+}
+
+.modal-cuerpo {
+    padding: 1.5rem;
+    overflow-y: auto;
+}
+
+.modal-pie {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--color-borde);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    background-color: color-mix(in srgb, var(--color-fondo) 40%, var(--color-superficie) 60%);
+}
+
+/* =============================================================================
+   8. DISENO DE CARNET DE SOCIO (Regla R11)
+   ============================================================================= */
+.carnet-tarjeta {
+    width: 100%;
+    max-width: 480px;
+    background: linear-gradient(135deg, var(--color-primario) 0%, var(--color-primario-oscuro) 100%);
+    color: var(--color-texto-inverso);
+    border-radius: var(--radio-grande);
+    box-shadow: var(--sombra-elevada);
+    padding: 1.75rem;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto 1.5rem auto;
+}
+
+.carnet-tarjeta::after {
+    content: "";
+    position: absolute;
+    bottom: -40px;
+    right: -40px;
+    width: 180px;
+    height: 180px;
+    background-color: var(--color-acento);
+    opacity: 0.15;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.carnet-cabecera {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-texto-inverso) 20%, transparent);
+    padding-bottom: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.carnet-club-nombre {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--color-texto-inverso);
+    line-height: 1.2;
+}
+
+.carnet-numero {
+    font-size: 1.1rem;
+    font-family: var(--fuente-mono);
+    color: var(--color-acento);
+    font-weight: 700;
+}
+
+.carnet-socio-nombre {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+    color: var(--color-texto-inverso);
+}
+
+.carnet-socio-dni {
+    font-size: 0.9rem;
+    color: color-mix(in srgb, var(--color-texto-inverso) 75%, transparent);
+    margin-bottom: 1rem;
+}
+
+.carnet-datos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+}
+
+.carnet-dato-item .etiqueta-dato {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--color-texto-inverso) 65%, transparent);
+}
+
+.carnet-dato-item .valor-dato {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-texto-inverso);
+}
+
+.carnet-vigencia-caja {
+    padding: 0.6rem 0.85rem;
+    border-radius: var(--radio-pequeno);
+    background-color: rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.carnet-vigencia-texto {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+/* =============================================================================
+   9. RECIBO OFICIAL IMPRIMIBLE
+   ============================================================================= */
+.recibo-hoja {
+    background-color: var(--color-superficie);
+    color: var(--color-texto);
+    padding: 2.5rem;
+    max-width: 780px;
+    margin: 0 auto;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-medio);
+    box-shadow: var(--sombra-media);
+    font-family: var(--fuente-principal);
+}
+
+.recibo-membrete {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 2px solid var(--color-primario);
+    padding-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.recibo-club-info h2 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--color-primario);
+    margin-bottom: 0.2rem;
+}
+
+.recibo-datos-emision {
+    text-align: right;
+}
+
+.recibo-numero {
+    font-size: 1.35rem;
+    font-weight: 700;
+    font-family: var(--fuente-mono);
+    color: var(--color-primario);
+}
+
+.recibo-seccion-socio {
+    background-color: var(--color-secundario);
+    padding: 1rem 1.25rem;
+    border-radius: var(--radio-pequeno);
+    margin-bottom: 1.5rem;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1rem;
+}
+
+.recibo-total-caja {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background-color: var(--color-secundario);
+    border-radius: var(--radio-pequeno);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.recibo-firmas {
+    margin-top: 3.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    text-align: center;
+}
+
+.linea-firma {
+    border-top: 1px solid var(--color-borde-fuerte);
+    padding-top: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--color-texto-suave);
+}
+
+/* =============================================================================
+   10. CARNET DIGITAL DEL SOCIO (Regla R11)
+   ============================================================================= */
+.carnet-contenedor {
+    display: flex;
+    justify-content: center;
+    padding: 1.5rem 0;
+}
+
+.carnet-tarjeta {
+    width: 100%;
+    max-width: 480px;
+    background: linear-gradient(135deg, var(--color-primario-oscuro) 0%, var(--color-primario) 100%);
+    color: var(--color-texto-inverso);
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    padding: 1.75rem;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.carnet-tarjeta::after {
+    content: "MC";
+    position: absolute;
+    right: -20px;
+    bottom: -30px;
+    font-size: 11rem;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.05);
+    pointer-events: none;
+    line-height: 1;
+}
+
+.carnet-cabecera {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.carnet-institucion {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.carnet-escudo-icono {
+    width: 44px;
+    height: 44px;
+    background-color: var(--color-acento);
+    color: var(--color-texto-inverso);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1.1rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.carnet-nombre-club {
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.carnet-subtitulo {
+    font-size: 0.75rem;
+    opacity: 0.85;
+    text-transform: uppercase;
+}
+
+.carnet-cuerpo {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 1.25rem;
+    margin-bottom: 1.25rem;
+}
+
+.carnet-foto-avatar {
+    width: 80px;
+    height: 96px;
+    background-color: rgba(255, 255, 255, 0.12);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.carnet-foto-avatar svg {
+    width: 36px;
+    height: 36px;
+    fill: currentColor;
+}
+
+.carnet-datos-socio {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.carnet-nombre-completo {
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.carnet-dato-fila {
+    font-size: 0.85rem;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.carnet-etiqueta {
+    opacity: 0.75;
+}
+
+.carnet-valor {
+    font-weight: 600;
+}
+
+.carnet-pie {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding-top: 1rem;
+}
+
+.carnet-badge-vigencia {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.75rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.carnet-badge-vigencia.vigente {
+    background-color: var(--color-exito);
+    color: var(--color-texto-inverso);
+}
+
+.carnet-badge-vigencia.no-vigente {
+    background-color: var(--color-error);
+    color: var(--color-texto-inverso);
+}
+
+/* =============================================================================
+   11. PASARELA DE PAGO SIMULADA
+   ============================================================================= */
+.pasarela-contenedor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+@media (max-width: 860px) {
+    .pasarela-contenedor {
+        grid-template-columns: 1fr;
+    }
+}
+
+.tarjeta-credito-simulada {
+    background: linear-gradient(135deg, var(--color-primario) 0%, var(--color-primario-oscuro) 100%);
+    color: var(--color-texto-inverso);
+    border-radius: 14px;
+    padding: 1.75rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    position: relative;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.tarjeta-simulada-chip {
+    width: 45px;
+    height: 32px;
+    background: linear-gradient(135deg, var(--color-acento) 0%, var(--color-acento-hover) 100%);
+    border-radius: 6px;
+    margin-bottom: 1.5rem;
+}
+
+.tarjeta-simulada-numero {
+    font-family: var(--fuente-mono);
+    font-size: 1.25rem;
+    letter-spacing: 2px;
+    margin-bottom: 1.25rem;
+}
+
+.tarjeta-simulada-pie {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+}
+
+.tarjeta-simulada-titular {
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+/* =============================================================================
+   12. APARIENCIA DEL CLUB Y VISTA PREVIA EN VIVO (Adelanto Fase 3)
+   ============================================================================= */
+.grid-colores-tema {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+}
+
+.selector-color-caja {
+    background-color: var(--color-superficie);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-pequeno);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.selector-color-control {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.input-color-nativo {
+    width: 42px;
+    height: 42px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background: none;
+    padding: 0;
+}
+
+.preview-apariencia-caja {
+    background-color: var(--color-superficie);
+    border: 2px dashed var(--color-borde-fuerte);
+    border-radius: var(--radio-medio);
+    padding: 1.75rem;
+    margin-top: 1.5rem;
+}
+
+/* Reglas de impresion en papel */
+@media print {
+    body {
+        background-color: var(--color-blanco) !important;
+        color: var(--color-negro) !important;
+    }
+
+    #barra-lateral, #encabezado-superior, .no-imprimir, .btn, #contenedor-notificaciones, .btn-cerrar-modal, .acciones-imprimir {
+        display: none !important;
+    }
+
+    #area-principal, #contenido-vista {
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 100% !important;
+    }
+
+    .recibo-hoja {
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        max-width: 100% !important;
+    }
+
+    .carnet-contenedor {
+        padding: 0 !important;
+        margin: 2rem auto !important;
+    }
+}

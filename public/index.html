@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MiClub - Sistema integral de gestion de club de barrio: administracion de socios, cuotas sociales, pagos y asistencia deportiva.">
+    <title>MiClub - Gestion de Club Social y Deportivo</title>
+
+    <!-- Hojas de estilo del sistema -->
+    <link rel="stylesheet" href="assets/css/tema.css">
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/componentes.css">
+</head>
+<body>
+    <!-- Contenedor flotante para notificaciones Toast -->
+    <div id="contenedor-notificaciones" aria-live="polite"></div>
+
+    <!-- Contenedor principal de la aplicacion de una sola pagina -->
+    <div id="app-contenedor">
+        <!-- Barra lateral institucional -->
+        <aside id="barra-lateral" aria-label="Menu Principal">
+            <div class="cabecera-lateral">
+                <div class="icono-escudo" aria-hidden="true">MC</div>
+                <div>
+                    <div class="titulo-club nombre-club-dinamico">MiClub</div>
+                    <div class="subtitulo-club">Club Social y Deportivo</div>
+                </div>
+            </div>
+
+            <!-- Navegacion por rol -->
+            <nav style="flex: 1; display: flex; flex-direction: column;">
+                <ul class="menu-lateral" id="lista-menu-lateral"></ul>
+            </nav>
+
+            <!-- Pie de barra lateral con sesion activa -->
+            <div class="pie-lateral" id="info-usuario-pie"></div>
+        </aside>
+
+        <!-- Area de contenido principal -->
+        <div id="area-principal">
+            <!-- Encabezado superior -->
+            <header id="encabezado-superior">
+                <h1 class="titulo-vista-actual" id="titulo-vista">Panel Principal</h1>
+                <div style="font-size: 0.85rem; color: var(--color-texto-suave);">
+                    <span class="nombre-club-dinamico">Club Social y Deportivo MiClub</span>
+                </div>
+            </header>
+
+            <!-- Contenido dinamico de la vista activa -->
+            <main id="contenido-vista" role="main" tabindex="-1">
+                <div style="text-align: center; padding: 3rem; color: var(--color-texto-suave);">
+                    Cargando aplicacion...
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Modulos JavaScript en capas (sin dependencias externas ni compilacion) -->
+    <script src="assets/js/api.js"></script>
+    <script src="assets/js/ui.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/tema.js"></script>
+    <script src="assets/js/router.js"></script>
+    
+    <!-- Vistas del sistema -->
+    <script src="assets/js/vistas/inicioSesion.js"></script>
+    <script src="assets/js/vistas/panel.js"></script>
+    <script src="assets/js/vistas/generarCuotas.js"></script>
+    <script src="assets/js/vistas/registrarPago.js"></script>
+    <script src="assets/js/vistas/recibo.js"></script>
+    <script src="assets/js/vistas/asistencia.js"></script>
+    <script src="assets/js/vistas/carnet.js"></script>
+    <script src="assets/js/vistas/estadoCuenta.js"></script>
+    <script src="assets/js/vistas/historialPagos.js"></script>
+    <script src="assets/js/vistas/pagarCuota.js"></script>
+    <script src="assets/js/vistas/inscripcionDivision.js"></script>
+    <script src="assets/js/vistas/editarDatos.js"></script>
+    <script src="assets/js/vistas/misEntrenamientos.js"></script>
+    <script src="assets/js/vistas/morosos.js"></script>
+    <script src="assets/js/vistas/plantel.js"></script>
+    <script src="assets/js/vistas/crearEntrenamiento.js"></script>
+    <script src="assets/js/vistas/apercibimientos.js"></script>
+    <script src="assets/js/vistas/apariencia.js"></script>
+    <script src="assets/js/vistas/usuarios.js"></script>
+    <script src="assets/js/vistas/socios.js"></script>
+    <script src="assets/js/vistas/categorias.js"></script>
+    <script src="assets/js/vistas/precios.js"></script>
+    <script src="assets/js/vistas/divisiones.js"></script>
+
+    <!-- Bootstrap de inicio -->
+    <script src="assets/js/app.js"></script>
+</body>
+</html>

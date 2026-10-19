@@ -1,0 +1,335 @@
+/**
+ * Estilos base y estructura estructural de MiClub.
+ * Capa: Presentacion / Estilos base.
+ */
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    font-family: var(--fuente-principal);
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--color-texto);
+    background-color: var(--color-fondo);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+    color: var(--color-primario);
+    text-decoration: none;
+    transition: var(--transicion-base);
+}
+
+a:hover {
+    color: var(--color-primario-hover);
+    text-decoration: underline;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--color-primario-oscuro);
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+h1 { font-size: 1.85rem; margin-bottom: 0.75rem; }
+h2 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+h3 { font-size: 1.25rem; margin-bottom: 0.5rem; }
+h4 { font-size: 1.1rem; margin-bottom: 0.25rem; }
+
+p {
+    margin-bottom: 1rem;
+}
+
+/* =============================================================================
+   Iconos vectoriales y SVG
+   ============================================================================= */
+svg {
+    max-width: 100%;
+}
+
+.icono-svg, svg.icono-svg {
+    width: 1.15rem;
+    height: 1.15rem;
+    fill: currentColor;
+    flex-shrink: 0;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* Contenedor general de la SPA */
+#app-contenedor {
+    min-height: 100vh;
+    display: flex;
+    background-color: var(--color-fondo);
+}
+
+/* Pantalla de login centrada */
+.contenedor-autenticacion {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, var(--color-fondo) 0%, var(--color-secundario) 100%);
+}
+
+/* Layout con barra lateral y area principal */
+.layout-sistema {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* Barra lateral institucional */
+#barra-lateral {
+    width: 260px;
+    background-color: var(--color-primario-oscuro);
+    color: var(--color-texto-inverso);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    box-shadow: var(--sombra-media);
+    z-index: 10;
+}
+
+.cabecera-lateral {
+    padding: 1.5rem 1.25rem;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-texto-inverso) 12%, transparent);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.icono-escudo {
+    width: 36px;
+    height: 36px;
+    background-color: var(--color-acento);
+    color: var(--color-texto-inverso);
+    border-radius: var(--radio-medio);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.titulo-club {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--color-texto-inverso);
+    line-height: 1.2;
+}
+
+.subtitulo-club {
+    font-size: 0.75rem;
+    color: color-mix(in srgb, var(--color-texto-inverso) 70%, transparent);
+    margin-top: 2px;
+}
+
+/* Menu de navegacion lateral */
+.menu-lateral {
+    list-style: none;
+    padding: 1rem 0;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.item-menu {
+    margin-bottom: 2px;
+}
+
+.enlace-menu {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1.25rem;
+    color: color-mix(in srgb, var(--color-texto-inverso) 80%, transparent);
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: var(--transicion-base);
+    text-decoration: none;
+    border-left: 3px solid transparent;
+}
+
+.enlace-menu:hover {
+    color: var(--color-texto-inverso);
+    background-color: color-mix(in srgb, var(--color-texto-inverso) 8%, transparent);
+    text-decoration: none;
+}
+
+.enlace-menu.activo {
+    color: var(--color-texto-inverso);
+    background-color: color-mix(in srgb, var(--color-texto-inverso) 14%, transparent);
+    border-left-color: var(--color-acento);
+}
+
+.icono-menu {
+    width: 20px;
+    height: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.icono-menu svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+}
+
+/* Pie de barra lateral con sesion */
+.pie-lateral {
+    padding: 1rem 1.25rem;
+    border-top: 1px solid color-mix(in srgb, var(--color-texto-inverso) 12%, transparent);
+    background-color: color-mix(in srgb, var(--color-negro) 20%, transparent);
+}
+
+.info-usuario-lateral {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.75rem;
+}
+
+.nombre-usuario-lateral {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-texto-inverso);
+}
+
+.rol-usuario-lateral {
+    font-size: 0.75rem;
+    color: var(--color-acento);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+/* Area principal de contenido */
+#area-principal {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    background-color: var(--color-fondo);
+}
+
+/* Encabezado superior */
+#encabezado-superior {
+    height: 60px;
+    background-color: var(--color-superficie);
+    border-bottom: 1px solid var(--color-borde);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.5rem;
+}
+
+.titulo-vista-actual {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--color-primario-oscuro);
+}
+
+/* Vista activa */
+#contenido-vista {
+    flex: 1;
+    padding: 1.5rem;
+    overflow-y: auto;
+}
+
+/* Contenedor maximo para pantallas anchas */
+.ancho-contenido {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    #app-contenedor {
+        flex-direction: column;
+    }
+
+    #barra-lateral {
+        width: 100%;
+        min-height: auto;
+    }
+
+    .cabecera-lateral {
+        padding: 0.75rem 1rem;
+    }
+
+    .menu-lateral {
+        display: flex;
+        overflow-x: auto;
+        padding: 0.5rem;
+        -webkit-overflow-scrolling: touch;
+        gap: 0.25rem;
+    }
+
+    .item-menu {
+        flex-shrink: 0;
+        margin-bottom: 0;
+    }
+
+    .enlace-menu {
+        padding: 0.5rem 0.75rem;
+        border-left: none;
+        border-bottom: 3px solid transparent;
+        white-space: nowrap;
+        font-size: 0.85rem;
+    }
+
+    .enlace-menu.activo {
+        border-bottom-color: var(--color-acento);
+    }
+
+    .pie-lateral {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.5rem 1rem;
+        gap: 1rem;
+    }
+
+    .info-usuario-lateral {
+        margin-bottom: 0;
+    }
+
+    #encabezado-superior {
+        padding: 0 1rem;
+        height: 52px;
+    }
+
+    #contenido-vista {
+        padding: 1rem 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .cabecera-lateral {
+        flex-direction: row;
+    }
+
+    .titulo-club {
+        font-size: 0.95rem;
+    }
+
+    .subtitulo-club {
+        display: none;
+    }
+
+    .pie-lateral {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.5rem;
+    }
+}
