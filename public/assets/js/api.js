@@ -53,7 +53,16 @@ const Api = (function () {
 
         try {
             const respuestaHttp = await fetch(urlCompleta, opciones);
-            const respuestaJson = await respuestaHttp.json();
+            const textoRespuesta = await respuestaHttp.text();
+            let respuestaJson = null;
+
+            if (textoRespuesta && textoRespuesta.trim().length > 0) {
+                try {
+                    respuestaJson = JSON.parse(textoRespuesta);
+                } catch (e) {
+                    respuestaJson = null;
+                }
+            }
 
             // Si el servidor respondio con estructura uniforme
             if (respuestaJson && typeof respuestaJson === 'object') {
@@ -68,9 +77,12 @@ const Api = (function () {
                 }
             }
 
-            // Si la respuesta no tuvo formato esperado
-            if (!respuestaHttp.ok) {
-                const error = new Error('Error de comunicacion con el servidor (HTTP ' + respuestaHttp.status + ')');
+            // Si la respuesta no tuvo formato JSON esperado o hubo un error HTTP
+            if (!respuestaHttp.ok || !respuestaJson) {
+                const mensaje = !respuestaHttp.ok
+                    ? `Error de comunicacion con el servidor (HTTP ${respuestaHttp.status})`
+                    : 'Respuesta invalida del servidor';
+                const error = new Error(mensaje);
                 error.codigoHttp = respuestaHttp.status;
                 throw error;
             }
